@@ -1,5 +1,7 @@
 <?php
 
+echo "<h1>Ejercicio 01</h1>";
+
 /**
  * 1. Declare dos variables numéricas, las sume, reste, dividí y muestre los valores de las
  * variables y los resultados de sus operaciones
@@ -12,16 +14,16 @@ echo "Número 1: $num1 <br>
         Número 2: $num2 <br><br>";
 
 // SUMA
-$addition = $num1 + $num2;
+$suma = $num1 + $num2;
 
 // RESTA
-$substraction = $num1 - $num2;
+$resta = $num1 - $num2;
 
 // DIVISION
 $division = $num1 / $num2;
 
-echo "$num1 + $num2 = $addition <br>
-        $num1 - $num2 = $substraction <br>
+echo "$num1 + $num2 = $suma <br>
+        $num1 - $num2 = $resta <br>
         $num1 / $num2 = $division <br><hr>";
 
 /**
@@ -35,4 +37,21 @@ echo "$num1 + $num2 = $addition <br>
  } else {
         echo "$num1 y $num2 son iguales.<hr>";
  }
+
+ /**
+  * 3. Si las dos variables son valores superiores a 1, 
+  */
+
+  if ($num1 && $num2 > 1) {
+        /**
+         * a. calcula el área del triángulo con base y altura igual a los valores de las 
+         * variables. 
+         */
+
+         $areaTriangulo = ($num1 * $num2) / 2;
+
+         echo "Área del triángulo: $areaTriangulo";
+  }
+
+
 
