@@ -50,7 +50,8 @@ echo "$num1 + $num2 = $suma <br>
 
          $areaTriangulo = ($num1 * $num2) / 2;
 
-         echo "Área del triángulo: $areaTriangulo";
+         echo "Área del triángulo <br>
+                ($num1 * $num2) / 2 = $areaTriangulo";
   }
 
 
