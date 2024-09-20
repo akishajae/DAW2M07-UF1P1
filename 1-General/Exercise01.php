@@ -24,5 +24,15 @@ echo "$num1 + $num2 = $addition <br>
         $num1 - $num2 = $substraction <br>
         $num1 / $num2 = $division <br>";
 
+/**
+ * 2. Muestra cuál es mayor, cuál menor o si son iguales.
+ */
 
+ if ($num1 > $num2) {
+        echo "$num1 es mayor a $num2. Por ende, $num2 es menor.";
+ } else if ($num1 < $num2) {
+        echo "$num2 es mayor a $num1. Por ende, $num1 es menor.";
+ } else {
+        echo "$num1 y $num2 son iguales.";
+ }
 
