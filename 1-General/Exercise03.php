@@ -25,4 +25,9 @@ echo "<h1>Ejercicio 03</h1>";
     }
  }
 
- 
+ /**
+  * 3. Muestra la progresión numérica desde la segunda variable hasta 0 con un bucle 
+  * while.
+  */
+
+  
