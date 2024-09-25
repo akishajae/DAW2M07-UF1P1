@@ -32,7 +32,25 @@ for ($i = 0; $i <= $num1; $i++) {
 
 echo "<hr><h2>WHILE</h2>";
 
-while ($num2 >= 0) {
-    echo "$num2 | ";
-    $num2--;
+$a = $num2; //crea una variable con el mismo valor que $num1 para usarlo en el while
+
+while ($a >= 0) {
+    echo "$a | ";
+    $a--;
 }
+
+/**
+ * 4. Muestra la progresión numérica desde la primera variable a la segunda con un bucle 
+ * do/while
+ *    a. Si la segunda variable es más pequeña, sólo queremos que imprima una vez 
+ *    el valor de la primera variable.
+ */
+
+echo "<hr><h2>DO/WHILE</h2>";
+
+$b = $num1; //crea una variable con el mismo valor que $num1 para usarlo en el while
+
+do {
+    echo "$b | ";
+    $b++;
+} while ($b <= $num2);
