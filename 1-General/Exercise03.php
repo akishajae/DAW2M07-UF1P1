@@ -53,4 +53,4 @@ $b = $num1; //crea una variable con el mismo valor que $num1 para usarlo en el w
 do {
     echo "$b | ";
     $b++;
-} while ($b <= $num2);
+} while ($b <= $num2); //es posible ser ($b++ <= $num2)
