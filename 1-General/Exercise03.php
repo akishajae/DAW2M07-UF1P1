@@ -6,10 +6,10 @@ echo "<h1>Ejercicio 03</h1>";
  * 1. Se declaren dos variables con valores numéricos superiores a 10
  */
 
- $num1 = rand(10, 50);
- $num2 = rand(10, 50);
+$num1 = rand(10, 50);
+$num2 = rand(10, 50);
 
- echo "Número 1: $num1 <br>
+echo "Número 1: $num1 <br>
         Número 2: $num2 <br><br>";
 
 /**
@@ -17,17 +17,22 @@ echo "<h1>Ejercicio 03</h1>";
  * primera con un bucle for. 
  */
 
- echo "<h2>FOR</h2>";
+echo "<hr><h2>FOR</h2>";
 
- for ($i = 0; $i < $num1; $i++) {
+for ($i = 0; $i <= $num1; $i++) {
     if ($i % 2 == 0) {
         echo "$i | ";
     }
- }
+}
 
- /**
-  * 3. Muestra la progresión numérica desde la segunda variable hasta 0 con un bucle 
-  * while.
-  */
+/**
+ * 3. Muestra la progresión numérica desde la segunda variable hasta 0 con un bucle 
+ * while.
+ */
 
-  
+echo "<hr><h2>WHILE</h2>";
+
+while ($num2 >= 0) {
+    echo "$num2 | ";
+    $num2--;
+}
