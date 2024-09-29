@@ -75,6 +75,23 @@ foreach (array_reverse($letter) as $value) {
 
 echo "<h1>Ejercicio 06</h1>";
 
+$clase = array(
+    "Miguel" => 5, 
+    "Luís" => 7, 
+    "Marta" => 10, 
+    "Isabel" => 8,
+    "Aitor" => 4,
+    "Pepe" => 1
+);
+
+array_multisort($clase, SORT_DESC, SORT_NUMERIC);
+
+echo "Notas de los estudiantes: ";
+
+foreach ($clase as $alumni => $nota) {
+    echo "$alumni: $nota";
+}
+
 /**
  * 7. Calcula la media de las notas y muéstrala con solo 2 decimales. Además, muestra los
  * nombres de los alumnos cuya nota esté por encima de la media. 
@@ -82,9 +99,26 @@ echo "<h1>Ejercicio 06</h1>";
 
 echo "<h1>Ejercicio 07</h1>";
 
+function calculateAvg($array) {
+    return number_format(array_sum($array) / count($array), 2, ',', '.');
+}
+
+$media = calculateAvg($clase);
+
+echo "Media de las notas: $media <br>";
+
+echo "Alumnos con nota por encima de la media: <br>";
+foreach ($clase as $alumni => $nota) {
+    if ($nota > $media) {
+        echo "$alumni <br>";
+    }
+}
+
 /**
  * 8. Busca en el array la nota más alta (debe hacerse mediante código). Muestra la nota y
  * el nombre del mejor alumno de la clase. Deberá funcionar para cualquier valor del array. 
  */
 
 echo "<h1>Ejercicio 08</h1>";
+
+echo "La nota más alta es " . " y el/la mejor alumni es ";
