@@ -121,4 +121,8 @@ foreach ($clase as $alumni => $nota) {
 
 echo "<h1>Ejercicio 08</h1>";
 
-echo "La nota más alta es " . " y el/la mejor alumni es ";
+//si hay alumnos que han obtenido la misma nota máxima
+//$topAlumni = array_keys($clase, max($clase)); --> pero no funciona
+
+$topAlumni = array_search(max($clase),$clase);
+echo "La nota más alta es " . max($clase) . " y el/la mejor alumni es " . $topAlumni;
