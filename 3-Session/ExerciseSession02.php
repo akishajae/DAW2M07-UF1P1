@@ -48,20 +48,28 @@ if (isset($_POST['avg'])) {
 
         <p>Position to modify: </p>
         <select name="new_position" id="new_position">
-            <?php ?>
-            
-        
+            <?php
+
+            for ($i = 0; $i < count($array); $i++) {
+                echo "<option value='$i'>$i</option>";
+            }
+
+            ?>
         </select>
 
-        <label for="new_value">New value:</label>
+        <br><br>
+
+        <label for="new_value">New value: </label>
         <input type="number" name="new_value" id="new_value">
 
         <br><br>
-        <input type="submit" value="mod" name="mod">
-        <input type="submit" value="avg" name="avg">
-        <input type="reset" value="reset">
+        <input type="submit" value="Modify" name="mod">
+        <input type="submit" value="Average" name="avg">
+        <input type="reset" value="Reset">
 
-        <p>Current array: <?php ?></p>
+        <p>Current array:
+            <?php echo implode(", ", $array); ?>
+        </p>
     </form>
 
 </body>
