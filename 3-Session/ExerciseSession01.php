@@ -2,56 +2,51 @@
 
 session_start();
 
-if (isset($_POST['worker'])) {
-    // get worker and set session
-    $worker = $_POST['worker'];
-    $_SESSION['worker'] = $worker;
-}
+// save inventory in session
+$_SESSION["inventory"] = array("milk" => 0, "soft_drink" => 0);
 
-if (isset($_POST['product']) && isset($_POST['quantity'])) {
-    // get product and quantity
-    $product = $_POST['product'];
-    $quantity = $_POST['quantity'];
+// button options
+// para ahorrar ifs
+if (isset($_POST["submit"])) {
+    // get variables
+    $submit = $_POST["submit"];
+    $worker = $_POST["worker"];
+    $product = $_POST["product"];
+    $quantity = $_POST["quantity"];
 
-    // add products
-    if (isset($_POST['add'])) {
-        switch ($product) {
-            case 'milk':
-                $_SESSION['milk'] += $quantity;
-                break;
-            case 'soft_drink':
-                $_SESSION['soft_drink'] += $quantity;
-                break;
-            default:
-                echo "<br>Error.";
-                break;
-        }
-    }
+    // save in sessions
+    $_SESSION["worker"] = $worker;
 
-    // remove products
-    if (isset($_POST['remove'])) {
-        switch ($product) {
-            case 'milk':
-                if ($quantity <= $_SESSION['milk']) {
-                    $_SESSION['milk'] -= $quantity;
-                } else {
-                    echo "<br>Error. There isn't that amount of milk.";
-                }
-                break;
-            case 'soft_drink':
-                if ($quantity <= $_SESSION['soft_drink']) {
-                    $_SESSION['soft_drink'] -= $quantity;
-                } else {
-                    echo "<br>Error. There isn't that amount of soft drinks.";
-                }
-                break;
-            default:
-                echo "<br>Error.";
-                break;
-        }
+    switch ($submit) {
+        case "add":
+            switch ($product) {
+                case "milk":
+                    $_SESSION["inventory"]["milk"] += (int)$quantity;
+                    break;
+                case "soft_drink":
+                    $_SESSION["inventory"]["soft_drink"] += (int)$quantity;
+                    break;
+            }
+            break;
+        case "remove":
+            switch ($product) {
+                case "milk":
+                    $_SESSION["inventory"]["milk"] -= $quantity;
+                    break;
+                case "soft_drink":
+                    $_SESSION["inventory"]["soft_drink"] -= $quantity;
+                    break;
+            }
+            break;
+        case "reset":
+            session_unset();
+            break;
     }
 }
 
+// function errorAlert() {
+//     echo "<p>Error. You've made a mistake.</p>";
+// }
 
 ?>
 
@@ -80,14 +75,15 @@ if (isset($_POST['product']) && isset($_POST['quantity'])) {
 
         <h2>Product quantity:</h2>
         <input type="number" id="quantity" name="quantity" min="1"><br><br>
-        <input type="submit" value="add" name="add">
-        <input type="submit" value="remove" name="remove">
-        <input type="reset" value="reset">
+
+        <input type="submit" value="add" name="submit">
+        <input type="submit" value="remove" name="submit">
+        <input type="submit" value="reset" name="submit">
 
         <h2>Inventory:</h2>
-        <p>Worker: <?php echo isset($_SESSION['worker']) ? $_SESSION['worker'] : " "; ?></p>
-        <p>Units milk: <?php echo isset($_SESSION['milk']) ? $_SESSION['milk'] : " "; ?></p>
-        <p>Units soft drink: <?php echo isset($_SESSION['soft_drink']) ? $_SESSION['soft_drink'] : " "; ?></p>
+        <p>Worker: <?php echo isset($_SESSION["woker"]) ? $_SESSION["woker"] : " "; ?></p>
+        <p>Units milk: <?php echo isset($_SESSION["inventory"]["milk"]) ? $_SESSION["inventory"]["milk"] : " "; ?></p>
+        <p>Units soft drink: <?php echo isset($_SESSION["inventory"]["soft_drink"]) ? $_SESSION["inventory"]["soft_drink"] : " "; ?></p>
     </form>
 
 </body>

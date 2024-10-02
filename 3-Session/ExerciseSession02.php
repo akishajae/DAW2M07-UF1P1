@@ -7,8 +7,11 @@ $array = array(10, 20, 30);
 $_SESSION['array'] = $array;
 
 // get new position and value
-$new_position = $_POST['new_position'];
-$new_value = $_POST['new_value'];
+
+if (isset($_POST['new_position']) && isset($_POST['new_value'])) {
+    $new_position = $_POST['new_position'];
+    $new_value = $_POST['new_value'];
+}
 
 if (isset($_POST['mod'])) {
     if (isset($new_position) && isset($new_value)) {
