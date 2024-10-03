@@ -7,20 +7,27 @@ $errorQuantity = false;
 
 // button options
 // para ahorrar ifs
-if (isset($_POST["submit"]) && ($_POST["quantity"]) != null) {
+if (isset($_POST["submit"])) {
+
+    // reset error
+    $errorRemove = false;
+    $errorQuantity = false;
+
     // get variables
     $submit = $_POST["submit"];
     $worker = $_POST["worker"];
     $product = $_POST["product"];
     $quantity = $_POST["quantity"];
 
+    // quantity error
+    if ($quantity == null) {
+        $errorQuantity = true;
+    }
+
     // save in sessions
     $_SESSION["worker"] = $worker;
 
-    // reset error
-    $errorRemove = false;
-    $errorQuantity = false;
-
+    
     if (!isset($_SESSION["milk"]) && !isset($_SESSION["soft_drink"])) {
         $_SESSION["milk"] = 0;
         $_SESSION["soft_drink"] = 0;
@@ -57,10 +64,11 @@ if (isset($_POST["submit"]) && ($_POST["quantity"]) != null) {
             break;
         case "reset":
             session_unset();
+            session_destroy();
+            session_abort();
+            header("Refresh:0");
             break;
     }
-} else {
-    $errorQuantity = true;
 }
 function errorRemove($errorRemove)
 {
@@ -108,7 +116,8 @@ function errorQuantity($errorQuantity)
         <input type="submit" value="remove" name="submit">
         <input type="submit" value="reset" name="submit">
 
-        <?php errorQuantity($errorQuantity); errorRemove($errorRemove); ?>
+        <?php errorQuantity($errorQuantity);
+        errorRemove($errorRemove); ?>
 
         <h2>Inventory:</h2>
         <p>Worker: <?php echo isset($_SESSION["worker"]) ? $_SESSION["worker"] : " "; ?></p>
