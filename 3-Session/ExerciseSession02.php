@@ -4,17 +4,19 @@ session_start();
 
 // create initial array and set session
 $array = array(10, 20, 30);
-$_SESSION["array"] = $array;
+$_SESSION["array"];
 
 $errorValue = false;
+$errorPosition = false;
 
-if (isset($_POST["submit"])) {
+if (isset($_POST["mod"]) && $_POST["new_value"] != null) {
 
     // reset error
     $errorValue = false;
+    $errorPosition = false;
 
     // get variables
-    $submit = $_POST["submit"];
+    $mod = $_POST["mod"];
     $new_position = $_POST["new_position"];
     $new_value = $_POST["new_value"];
 
@@ -23,35 +25,43 @@ if (isset($_POST["submit"])) {
         $errorValue = true;
     }
 
-    switch ($submit) {
-        case "modify":
-            if ($new_position < count($array) && $new_position >= 0) {
-                $array[$new_position] = $new_value;
-            } else {
-                echo "<br>Error. The new value can't be in that position.";
-            }
-            break;
-        case "average":
-            $media = calculateAvg($array);
-            break;
-        case "reset":
-            session_unset();
-            session_destroy();
-            session_abort();
-            header("Refresh:0");
-            break;
+    // modify position and value
+    if ($new_position < count($array) && $new_position >= 0) {
+        $array[$new_position] = $new_value;
+    } else {
+        $errorPosition = true;
     }
+} else {
+    $errorValue = true;
 }
 
-function calculateAvg($array)
-{
-    return number_format(array_sum($array) / count($array), 2, ',', '.');
+if (isset($_POST["avg"])) {
+    function calculateAvg($array)
+    {
+        return number_format(array_sum($array) / count($array), 2, ',', '.');
+    }
+
+    $media = calculateAvg($array);
+}
+
+if (isset($_POST["reset"])) {
+    session_unset();
+    session_destroy();
+    session_abort();
+    header("Refresh:0");
 }
 
 function errorValue($errorValue)
 {
     if ($errorValue) {
         echo "<p style='color:red;'>Error. You have to input a value to be modified.</p>";
+    }
+}
+
+function errorPosition($errorPosition)
+{
+    if ($errorPosition) {
+        echo "<p style='color:red;'>Error. That position can't be modified.</p>";
     }
 }
 
@@ -89,15 +99,16 @@ function errorValue($errorValue)
         <input type="number" name="new_value" id="new_value">
 
         <br><br>
-        <input type="submit" value="modify" name="submit">
-        <input type="submit" value="average" name="submit">
-        <input type="submit" value="reset" name="submit">
+        <input type="submit" value="modify" name="mod">
+        <input type="submit" value="average" name="avg">
+        <input type="submit" value="reset" name="reset">
 
         <?php errorValue($errorValue); ?>
 
         <p>Current array:
             <?php echo implode(", ", $array); ?>
         </p>
+        <?php if (isset($_POST["avg"])) echo "Average: $media"; ?>
     </form>
 
 </body>
