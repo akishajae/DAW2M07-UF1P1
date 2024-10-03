@@ -89,7 +89,7 @@ array_multisort($clase, SORT_DESC, SORT_NUMERIC);
 echo "Notas de los estudiantes: ";
 
 foreach ($clase as $alumni => $nota) {
-    echo "$alumni: $nota";
+    echo "$alumni: $nota ";
 }
 
 /**
