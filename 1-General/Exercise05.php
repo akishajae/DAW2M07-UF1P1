@@ -9,6 +9,9 @@ echo "<h1>Ejercicio 05</h1>";
  */
 
 $suma = 0;
+$paresCont = 0;
+$imparesCont = 0;
+
 do {
     $num = rand(0, 20);
     $mostrarSuma = $suma + $num;
@@ -21,15 +24,11 @@ do {
      * 4. Muestra el total de números pares e impares generados. 
      */
 
-    $paresCont = 0;
-    $imparesCont = 0;
-
     if ($num % 2 == 0) {
         $paresCont++;
     } else {
         $imparesCont++;
     }
-
 } while ($suma < 100);
 
 echo "<br> Total pares:  $paresCont";
