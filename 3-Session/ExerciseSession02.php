@@ -3,45 +3,46 @@
 session_start();
 
 // create initial array and set session
-$array = array(10, 20, 30);
-$_SESSION["array"];
+if (!isset($_SESSION["array"])) {
+    $_SESSION["array"] = array(10, 20, 30);
+}
 
 $errorValue = false;
 $errorPosition = false;
 
-if (isset($_POST["mod"]) && $_POST["new_value"] != null) {
+if (isset($_POST["mod"])) {
 
     // reset error
     $errorValue = false;
     $errorPosition = false;
 
     // get variables
-    $mod = $_POST["mod"];
     $new_position = $_POST["new_position"];
     $new_value = $_POST["new_value"];
 
     // value error
     if ($new_value == null) {
         $errorValue = true;
-    }
-
-    // modify position and value
-    if ($new_position < count($array) && $new_position >= 0) {
-        $array[$new_position] = $new_value;
     } else {
-        $errorPosition = true;
+        // modify position and value
+        if ($new_position < count($_SESSION["array"]) && $new_position >= 0) {
+            $_SESSION["array"][$new_position] = $new_value;
+        } else {
+            $errorPosition = true;
+        }
     }
-} else {
-    $errorValue = true;
 }
 
 if (isset($_POST["avg"])) {
-    function calculateAvg($array)
-    {
-        return number_format(array_sum($array) / count($array), 2, ',', '.');
-    }
+
+    $array = $_SESSION["array"];
 
     $media = calculateAvg($array);
+}
+
+function calculateAvg($array)
+{
+    return number_format(array_sum($array) / count($array), 2, ',', '.');
 }
 
 if (isset($_POST["reset"])) {
@@ -86,7 +87,7 @@ function errorPosition($errorPosition)
         <select name="new_position" id="new_position">
             <?php
 
-            for ($i = 0; $i < count($array); $i++) {
+            for ($i = 0; $i < count($_SESSION["array"]); $i++) {
                 echo "<option value='$i'>$i</option>";
             }
 
@@ -106,11 +107,10 @@ function errorPosition($errorPosition)
         <?php errorValue($errorValue); ?>
 
         <p>Current array:
-            <?php echo implode(", ", $array); ?>
+            <?php echo implode(", ", $_SESSION["array"]); ?>
         </p>
         <?php if (isset($_POST["avg"])) echo "Average: $media"; ?>
     </form>
-
 </body>
 
 </html>
