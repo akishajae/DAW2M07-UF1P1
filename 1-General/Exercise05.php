@@ -16,20 +16,19 @@ do {
     $num = rand(0, 20);
     $mostrarSuma = $suma + $num;
 
-    echo ($num < 100) ? "$suma + $num = $mostrarSuma <br>" : $suma;
-
-    $suma += $num;
-
     /**
      * 4. Muestra el total de números pares e impares generados. 
      */
 
     if ($num % 2 == 0) {
-        echo "pares: " . $paresCont++;
+        echo "pares: " . $paresCont++ . "|";
     } else {
-        echo "impares: " . $imparesCont++;
+        echo "impares: " . $imparesCont++ . "|";
     }
 
+    echo ($num < 100) ? "$suma + $num = $mostrarSuma <br>" : $suma;
+
+    $suma += $num;
 } while ($suma < 100);
 
 echo "<br> Total pares:  $paresCont";
