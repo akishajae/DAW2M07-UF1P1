@@ -25,10 +25,11 @@ do {
      */
 
     if ($num % 2 == 0) {
-        $paresCont++;
+        echo "pares: " . $paresCont++;
     } else {
-        $imparesCont++;
+        echo "impares: " . $imparesCont++;
     }
+
 } while ($suma < 100);
 
 echo "<br> Total pares:  $paresCont";

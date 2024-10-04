@@ -54,7 +54,7 @@ if (isset($_POST["submit"])) {
                     }
                     break;
                 case "soft_drink":
-                    if ($quantity <= $_SESSION["milk"]) {
+                    if ($quantity <= $_SESSION["soft_drink"]) {
                         $_SESSION["soft_drink"] -= (int)$quantity;
                     } else {
                         $errorRemove = true;
