@@ -21,6 +21,9 @@ do {
      * 4. Muestra el total de números pares e impares generados. 
      */
 
+    $paresCont = 0;
+    $imparesCont = 0;
+
     if ($num % 2 == 0) {
         $paresCont++;
     } else {
