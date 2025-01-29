@@ -124,5 +124,17 @@ echo "<h1>Ejercicio 08</h1>";
 //si hay alumnos que han obtenido la misma nota máxima
 //$topAlumni = array_keys($clase, max($clase)); --> pero no funciona
 
-$topAlumni = array_search(max($clase),$clase);
-echo "La nota más alta es " . max($clase) . " y el/la mejor alumni es " . $topAlumni;
+//$topAlumni = array_search(max($clase),$clase);
+
+$notaMax = null;
+$topAlumni = null;
+
+foreach ($clase as $alumni => $nota) {
+    if ($notaMax == null | $nota > $notaMax) {
+        $notaMax = $nota;
+        $topAlumni = $alumni;
+	}
+}
+
+//echo "La nota más alta es " . max($clase) . " y el/la mejor alumni es " . $topAlumni;
+echo "La nota más alta es " . $notaMax . " y el/la mejor alumni es " . $topAlumni;
